@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registrarButton = document.getElementById("registrar");
     const listaUl = document.querySelector("#lista ul");
 
-    //  para almacenamiento local
+    //  almacenamiento local
     function cargarContactosDesdeLocalStorage() {
         const contactosGuardados = JSON.parse(localStorage.getItem("contactos")) || [];
         contactosGuardados.forEach(function (contacto) {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //  para agregar un contacto a la lista
+   
     function agregarContactoALista(nombre, telefono) {
         const nuevoContacto = document.createElement("li");
         nuevoContacto.innerHTML = `
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <button class="edit">Editar</button>
         `;
 
-        //  para borrar
+        // para borrar
         const deleteButton = nuevoContacto.querySelector(".delete");
         deleteButton.addEventListener("click", function () {
             listaUl.removeChild(nuevoContacto);
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         guardarContactosEnLocalStorage();
     }
 
-
+    // almacenamiento local
     function guardarContactosEnLocalStorage() {
         const contactos = [];
         const listaContactos = listaUl.querySelectorAll("li");
@@ -69,15 +69,29 @@ document.addEventListener("DOMContentLoaded", function () {
         const nombre = nombreInput.value.trim();
         const telefono = telefonoInput.value.trim();
 
+        // comrpobar las   letras y numeros
+        const regexLetras = /^[A-Za-z]+$/;
+        const regexNumeros = /^[0-9]+$/;
+
         if (nombre === "" || telefono === "") {
             alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        if (!regexLetras.test(nombre)) {
+            alert("El nombre solo debe contener letras.");
+            return;
+        }
+
+        if (!regexNumeros.test(telefono)) {
+            alert("El teléfono solo debe contener números.");
             return;
         }
 
         agregarContactoALista(nombre, telefono);
     });
 
-    // Cargar al almacenamiento local 
+    // para el almacenamiento local 
     cargarContactosDesdeLocalStorage();
 });
 
