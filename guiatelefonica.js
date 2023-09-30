@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registrarButton = document.getElementById("registrar");
     const listaUl = document.querySelector("#lista ul");
 
-    
+    //  para almacenamiento local
     function cargarContactosDesdeLocalStorage() {
         const contactosGuardados = JSON.parse(localStorage.getItem("contactos")) || [];
         contactosGuardados.forEach(function (contacto) {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    
+    //  para agregar un contacto a la lista
     function agregarContactoALista(nombre, telefono) {
         const nuevoContacto = document.createElement("li");
         nuevoContacto.innerHTML = `
@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <button class="edit">Editar</button>
         `;
 
-        // Agrega la funcionalidad para borrar
+        //  para borrar
         const deleteButton = nuevoContacto.querySelector(".delete");
         deleteButton.addEventListener("click", function () {
             listaUl.removeChild(nuevoContacto);
             guardarContactosEnLocalStorage();
         });
 
-        // Agrega la funcionalidad para editar
+        // para editar
         const editButton = nuevoContacto.querySelector(".edit");
         editButton.addEventListener("click", function () {
             const contactoSpan = nuevoContacto.querySelector(".contacto");
@@ -42,18 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        
         listaUl.appendChild(nuevoContacto);
 
-   
         nombreInput.value = "";
         telefonoInput.value = "";
 
-       
         guardarContactosEnLocalStorage();
     }
 
-    
+
     function guardarContactosEnLocalStorage() {
         const contactos = [];
         const listaContactos = listaUl.querySelectorAll("li");
@@ -65,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("contactos", JSON.stringify(contactos));
     }
 
-    // evento al hacer de click para que registre
+    
     registrarButton.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -77,10 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-      
         agregarContactoALista(nombre, telefono);
     });
 
-   
+    // Cargar al almacenamiento local 
     cargarContactosDesdeLocalStorage();
 });
+
