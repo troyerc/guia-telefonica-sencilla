@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="guiatelefonica.css">
+    <title>Ejercicio</title>
+</head>
+<body>
+    <div id="todo">
+        <form action="#" id="formulario"> <!-- Cambié 'formu' a '#' como acción del formulario -->
+            <h1>Libreta de contactos</h1>
+            <div class="input">
+                <label for="nombre">Nombre</label>
+                <input name="nombre" id="nombre" type="text" pattern="[A-Za-z]+" title="Solo letras permitidas" oninvalid="setCustomValidity('Solo letras permitidas')" oninput="setCustomValidity('')">
+            </div>
+            <div class="input">
+                <label for="telefono">Telefono</label>
+                <input name="telefono" id="telefono" type="text" pattern="[0-9]+" title="Solo números permitidos" oninvalid="setCustomValidity('Solo números permitidos')" oninput="setCustomValidity('')">
+            </div>
+            <button id="registrar">Registrar</button>
+            <div id="lista">
+                <ul>
+                    <!-- Aquí aparecerán los elementos de la lista -->
+                </ul>
+            </div>
+        </form>
+    </div>
+    <script src="guiatelefonica.js"></script> <!-- Asegúrate de agregar el nombre correcto de tu archivo JS -->
+</body>
+</html>
